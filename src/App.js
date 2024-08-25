@@ -4,6 +4,7 @@ import KakaoLogin from './components/KakaoLogin';
 import KakaoCallback from './components/KakaoCallback';
 import Classroom from "./components/Classroom";
 import ScheduleList from "./components/ScheduleList";
+import ChatApp from './components/ChatApp';
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                 <Route path="/classroom" element={<Classroom />} />
                 <Route path="/schedule" element={<ScheduleList />} />
                 <Route path="/oauth/kakao/callback" element={<KakaoCallback />} />
+                <Route path="/chat" element={<ChatApp />} />
             </Routes>
         </Router>
     );
