@@ -31,7 +31,7 @@ const Classroom = () => {
             return;
         }
         try {
-            const response = await axios.get("http://3.34.11.72:5000/api/classes", {
+            const response = await axios.get("http://localhost:8080/api/classes", {
                 // headers: { Authorization: `Bearer ${token}` },
             });
             console.log(token)
@@ -45,7 +45,7 @@ const Classroom = () => {
     const createClassroom = async () => {
         try {
             await axios.post(
-                "http://3.34.11.72:5000/api/classes",
+                "http://localhost:8080/api/classes",
                 {
                     ...newClassroom,
                     userId: userId, // 사용자 ID를 포함
@@ -65,7 +65,7 @@ const Classroom = () => {
     // 강의 삭제
     const deleteClassroom = async (classId) => {
         try {
-            await axios.delete(`http://3.34.11.72:5000/api/classes/${classId}`, {
+            await axios.delete(`http://localhost:8080/api/classes/${classId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             alert("강의가 삭제되었습니다.");
@@ -78,7 +78,7 @@ const Classroom = () => {
     // 강의 일정 조회
     const fetchSchedules = async (classId) => {
         try {
-            const response = await axios.get(`http://3.34.11.72:5000/api/schedules/${classId}`, {
+            const response = await axios.get(`http://localhost:8080/api/schedules/${classId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setSchedules(response.data);
@@ -92,7 +92,7 @@ const Classroom = () => {
     const createSchedule = async (classId) => {
         try {
             await axios.post(
-                `http://3.34.11.72:5000/api/schedules`,
+                `http://localhost:8080/api/schedules`,
                 { classId: classId, scheduleInfo: "일정 내용" },
                 {
                     headers: { Authorization: `Bearer ${token}` },

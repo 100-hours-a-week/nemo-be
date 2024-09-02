@@ -12,7 +12,7 @@ const KakaoLogin = () => {
         }
 
         // Kakao SDK 초기화
-        fetch('http://3.34.11.72:5000/api/auth/kakao/app-key')
+        fetch('http://localhost:8080/api/auth/kakao/app-key')
             .then(response => response.json())
             .then(data => {
                 if (!window.Kakao.isInitialized()) {
@@ -30,7 +30,7 @@ const KakaoLogin = () => {
     };
 
     const handleSignupCheck = (token) => {
-        fetch('http://3.34.11.72:5000/api/auth/signup', {
+        fetch('http://localhost:8080/api/auth/signup', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`, // 수정된 Bearer 토큰 설정
@@ -55,7 +55,7 @@ const KakaoLogin = () => {
             const formData = new FormData();
             formData.append('nickname', nickname);
 
-            fetch('http://3.34.11.72:5000/api/auth/signup', {
+            fetch('http://localhost:8080/api/auth/signup', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`, // 수정된 Bearer 토큰 설정

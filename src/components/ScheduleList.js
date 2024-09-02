@@ -37,7 +37,7 @@ const ScheduleList = () => {
     const createSchedule = async () => {
         try {
             const response = await axios.post(
-                `http://3.34.11.72:5000/api/classes/${classId}/schedule`,
+                `http://localhost:8080/api/classes/${classId}/schedule`,
                 newSchedule,
                 {
                     headers: {
@@ -60,7 +60,7 @@ const ScheduleList = () => {
     // 스케줄 삭제
     const deleteSchedule = async (id) => {
         try {
-            await axios.delete(`http://3.34.11.72:5000/api/classes/${classId}/schedule/${id}`, {
+            await axios.delete(`http://localhost:8080/api/classes/${classId}/schedule/${id}`, {
                 headers: {
                     // Authorization: `Bearer ${token}`
                 }

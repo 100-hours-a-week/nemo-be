@@ -20,7 +20,7 @@ const ChatApp = () => {
     };
 
     const connect = () => {
-        const socket = new SockJS('http://localhost:8080/ws');
+        const socket = new SockJS('https://www.nemooceanacademy.com:5000/ws');
         const client = new Client({
             webSocketFactory: () => socket,
             onConnect: () => {
@@ -123,7 +123,7 @@ const ChatApp = () => {
     };
 
     const loadChatHistory = (roomId) => {
-        axios.get(`http://localhost:8080/find/chat/list/${roomId}`)
+        axios.get(`https://www.nemooceanacademy.com:5000/find/chat/list/${roomId}`)
             .then(response => {
                 setMessages(response.data.map(msg => ({
                     room: roomId,

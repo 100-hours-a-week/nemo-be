@@ -27,7 +27,7 @@ const KakaoCallback = () => {
         console.log("Authorization code:", code);
 
         if (code) {
-            fetch(`http://3.34.11.72:5000/api/auth/kakao/callback?code=${code}`)
+            fetch(`http://localhost:8080/api/auth/kakao/callback?code=${code}`)
                 .then(response => {
                     if (response.ok) {
                         return response.json();
@@ -49,7 +49,7 @@ const KakaoCallback = () => {
                         localStorage.setItem('refreshToken', data.refreshToken);
 
                         // 회원가입 여부 확인
-                        fetch('http://3.34.11.72:5000/api/auth/signup', {
+                        fetch('http://localhost:8080/api/auth/signup', {
                             method: 'GET',
                             headers: {
                                 'Authorization': `Bearer ${data.accessToken}`,
@@ -85,7 +85,7 @@ const KakaoCallback = () => {
             const formData = new FormData();
             formData.append('nickname', nickname);
 
-            fetch('http://3.34.11.72:5000/api/auth/signup', {
+            fetch('http://localhost:8080/api/auth/signup', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
