@@ -20,9 +20,16 @@ const ChatApp = () => {
     };
 
     const connect = () => {
+        const token = localStorage.getItem('accessToken'); // 로컬 스토리지에서 토큰을 가져옴
+
         const socket = new SockJS('http://localhost:8080/ws');
         const client = new Client({
             webSocketFactory: () => socket,
+            beforeConnect: () => {
+                client.connectHeaders = {
+                    Authorization: `Bearer ${token}` // Authorization 헤더에 토큰을 추가
+                };
+            },
             onConnect: () => {
                 setStompClient(client); // 상태 업데이트
                 setConnectedState(true);
