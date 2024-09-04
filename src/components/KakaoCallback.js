@@ -55,7 +55,7 @@ const KakaoCallback = () => {
                                 'Authorization': `Bearer ${data.accessToken}`,
                             }
                         }).then(response => {
-                            if (response.status === 204) {
+                            if (response.status === 404) {
                                 // 회원가입 필요
                                 handleSignup(data.accessToken);
                             } else {
@@ -71,7 +71,7 @@ const KakaoCallback = () => {
                     console.error('Error during Kakao login callback:', error);
                     setErrorMessage('로그인 중 오류가 발생했습니다. 다시 시도해 주세요.');
                     setTimeout(() => {
-                        navigate('/login');
+                        // navigate('/login');
                     }, 10000);
                 });
         } else {
@@ -82,9 +82,24 @@ const KakaoCallback = () => {
     const handleSignup = (token) => {
         const nickname = prompt('Enter your nickname for sign-up:');
         if (nickname) {
-            const formData = new FormData();
-            formData.append('nickname', nickname);
+            // signupRequestDto 객체 생성
+            const signupRequestDto = {
+                nickname: nickname,
+                // 필요한 다른 필드들도 여기 추가 가능
+            };
 
+            // FormData 생성
+            const formData = new FormData();
+
+            // signupRequestDto를 JSON 형식으로 Blob으로 변환해서 추가
+            formData.append('signupRequestDto', new Blob([JSON.stringify(signupRequestDto)], { type: 'application/json' }));
+
+            // 이미지 파일이 선택된 경우 추가 (선택 사항)
+            // if (imageFile) {
+            //     formData.append('imagefile', imageFile);
+            // }
+
+            // 서버로 POST 요청
             fetch('http://localhost:8080/api/auth/signup', {
                 method: 'POST',
                 headers: {
@@ -105,6 +120,7 @@ const KakaoCallback = () => {
                 .catch(error => console.error('Error during sign-up:', error));
         }
     };
+
 
     return (
         <div>

@@ -20,7 +20,7 @@ const ChatApp = () => {
     };
 
     const connect = () => {
-        const socket = new SockJS('https://www.nemooceanacademy.com:5000/ws');
+        const socket = new SockJS('https://nemooceanacademy.com:5000/ws');
         const token = localStorage.getItem('accessToken'); // 로컬 스토리지에서 토큰을 가져옴
         const client = new Client({
             webSocketFactory: () => socket,
@@ -129,7 +129,7 @@ const ChatApp = () => {
     };
 
     const loadChatHistory = (roomId) => {
-        axios.get(`https://www.nemooceanacademy.com:5000/find/chat/list/${roomId}`)
+        axios.get(`https://nemooceanacademy.com:5000/find/chat/list/${roomId}`)
             .then(response => {
                 setMessages(response.data.map(msg => ({
                     room: roomId,
